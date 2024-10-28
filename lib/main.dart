@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mini_project_3/loading.dart';
 import 'package:mini_project_3/mainscreen.dart';
+import 'package:mini_project_3/wishlist.dart';
 
 void main()async {
   await Hive.initFlutter();

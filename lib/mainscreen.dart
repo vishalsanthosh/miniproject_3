@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_3/database.dart';
 import 'package:mini_project_3/description.dart';
+import 'package:mini_project_3/wishlist.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -85,7 +86,10 @@ class _FirstPageState extends State<FirstPage> {
                         Spacer(),
                         GestureDetector(
                           onTap: (){
-                            
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=>WishListScreen(
+                            imagepath: Database.myList[index]["image"],
+                             name2: Database.myList[index]["name"],
+                              price: Database.myList[index]["price"]))); 
                           }
                           ,
                           child: Icon(Icons.favorite,color: Colors.red,size: 25,))

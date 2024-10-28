@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_3/cart.dart';
 import 'package:mini_project_3/database.dart';
 
 class SecondScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class SecondScreen extends StatelessWidget {
   final String name2;
 
   final String price;
-  SecondScreen({required this.imagepath,required this.name,required this.name2,required this.price});
+  const SecondScreen({super.key, required this.imagepath,required this.name,required this.name2,required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +60,16 @@ class SecondScreen extends StatelessWidget {
                    child: Text('''Earbuds are used for audio entertainment and communication. 
                  You can use them to listen to music, podcasts and movies.
                   Earbuds with a mic are also helpful for hands-free communication . for example, 
-                  as gaming earbuds or to take calls from your mobile phone or computer.''',maxLines: 4,
+                  as gaming earbuds or to take calls from your mobile phone or computer.''',maxLines: 3,
                     overflow: TextOverflow.ellipsis,style: TextStyle(color: Colors.grey),),
                  ),
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ElevatedButton(onPressed: (){}, child: Text("Add to Cart")),
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen(imagepath: imagepath, name: name, price: price)));
+                    }, child: Text("Add to Cart")),
                     Spacer(),
                     ElevatedButton(onPressed: (){}, child: Text("BUY NOW"))
                   ],
