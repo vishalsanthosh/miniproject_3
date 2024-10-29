@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:mini_project_3/login.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -44,68 +45,53 @@ String _loginMessage="";
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Text("CREATE NEW ACCOUNT",style: TextStyle(color: Colors.white,fontSize: 25),),
-              SizedBox(height: 10,),
-              TextFormField(
-                controller: fullname,
-                decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("FULL NAME",style:TextStyle(color: Colors.white,))))
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-               controller: email,
-               decoration: InputDecoration(border: OutlineInputBorder(),
-               label: Center(child: Text("EMAIL ADDRESS",style:TextStyle(color: Colors.white)))), 
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                controller: username,
-                decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER USER ID",style:TextStyle(color: Colors.white)))),
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                controller: password,
-                decoration: InputDecoration(border: OutlineInputBorder(),
-                label: Center(child: Text("ENTER PASSWORD",style:TextStyle(color: Colors.white)))),
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                controller: cpassword,
-                decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("CONFIRM PASSWORD",style:TextStyle(color: Colors.white)))),
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                controller: phone,
-                decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER PHONE NUMBER",style:TextStyle(color: Colors.white),))),
-              ),
-               SizedBox(height: 10,),
-              TextFormField(
-                controller: dob,
-                decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER DATE OF BIRTH",style:TextStyle(color: Colors.white)))),
-              ),
-              SizedBox(height: 15,),
-              ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,shape: RoundedRectangleBorder()), child: GestureDetector(
-                onTap: (){
-                  setState(() {
-                    if(
-                      fullname.text.isEmpty || email.text.isEmpty||
-                      username.text.isEmpty||password.text.isEmpty||
-                      cpassword.text.isEmpty||phone.text.isEmpty||
-                      dob.text.isEmpty
-                    ){
-                      _loginMessage="ALL FIELDS ARE REQUIRED";
-                      return;
-                    }if
-                      (password.text !=password.text){
-                        _loginMessage="password is Incorrect";
-                      
-                    }
-                    
-                  });
-                },
-              ))
-            ],
+          child: Expanded(
+            child: Column(
+              children: [
+                Text("CREATE NEW ACCOUNT",),
+                SizedBox(height: 10,),
+                TextFormField(
+                  controller: fullname,
+                  decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("FULL NAME")))
+                ),
+                SizedBox(height: 10,),
+                TextFormField(
+                 controller: email,
+                 decoration: InputDecoration(border: OutlineInputBorder(),
+                 label: Center(child: Text("EMAIL ADDRESS",))), 
+                ),
+                SizedBox(height: 10,),
+                TextFormField(
+                  controller: username,
+                  decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER USER ID",))),
+                ),
+                SizedBox(height: 10,),
+                TextFormField(
+                  controller: password,
+                  decoration: InputDecoration(border: OutlineInputBorder(),
+                  label: Center(child: Text("ENTER PASSWORD"))),
+                ),
+                SizedBox(height: 10,),
+                TextFormField(
+                  controller: cpassword,
+                  decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("CONFIRM PASSWORD"))),
+                ),
+                SizedBox(height: 10,),
+                TextFormField(
+                  controller: phone,
+                  decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER PHONE NUMBER"))),
+                ),
+                 SizedBox(height: 10,),
+                TextFormField(
+                  controller: dob,
+                  decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER DATE OF BIRTH"))),
+                ),
+                SizedBox(height: 15,),
+                ElevatedButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                }, child: Text("REGISTER"))
+              ],
+            ),
           ),
         ),
       ),

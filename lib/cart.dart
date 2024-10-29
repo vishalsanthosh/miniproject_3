@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_3/payment.dart';
 
 class CartScreen extends StatelessWidget{
    final String imagepath;
@@ -26,7 +27,7 @@ class CartScreen extends StatelessWidget{
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     height: 70,
                     width: 100,
                    child: Image.asset(imagepath),
@@ -90,27 +91,6 @@ SizedBox(height: 10,),
                           Text(price,style: TextStyle(fontSize: 20),)
                         ],
                       ),
-                      SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Total Discounts"),
-                          ),
-                          Spacer(),
-                          Text("-",),
-                          Icon(Icons.currency_rupee,),
-                          Text("24",)
-                        ],
-                      ),
-                  
-                    
-                    
-                    
-
-                    
-                                 
-                 
                  Text("____________________________________________________"),
                  SizedBox(height: 20,),
                  Row(
@@ -129,7 +109,7 @@ SizedBox(height: 10,),
                    ]
                  ),
                 SizedBox(height: 50,),
-                Container(
+                SizedBox(
                   height: 60,
                   width: double.infinity,
                   
@@ -145,7 +125,11 @@ SizedBox(height: 10,),
                           width: 70,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)
                           ,color: const Color.fromARGB(255, 245, 85, 138),),
-                          child: Center(child: Text("Continue",style: TextStyle(color: Colors.white),)),
+                          child: Center(child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentScreen()));
+                            },
+                            child: Text("Continue",style: TextStyle(color: Colors.white),))),
                         ),
                       )
                     ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_3/cart.dart';
-import 'package:mini_project_3/database.dart';
+import 'package:mini_project_3/payment.dart';
 
 class SecondScreen extends StatelessWidget {
 
@@ -71,7 +71,9 @@ class SecondScreen extends StatelessWidget {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen(imagepath: imagepath, name: name, price: price)));
                     }, child: Text("Add to Cart")),
                     Spacer(),
-                    ElevatedButton(onPressed: (){}, child: Text("BUY NOW"))
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentScreen()));
+                    }, child: Text("BUY NOW"))
                   ],
                  )
                 ],
