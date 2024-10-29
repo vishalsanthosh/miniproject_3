@@ -17,7 +17,8 @@ class _RegistrationState extends State<Registration> {
   TextEditingController password=TextEditingController();
   TextEditingController cpassword=TextEditingController();
   TextEditingController phone=TextEditingController();
-  TextEditingController dob=TextEditingController();
+  
+  List<Map<String,String>>itemS=[];
 String _loginMessage="";
   @override
   void initState(){
@@ -81,15 +82,50 @@ String _loginMessage="";
                   controller: phone,
                   decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER PHONE NUMBER"))),
                 ),
-                 SizedBox(height: 10,),
-                TextFormField(
-                  controller: dob,
-                  decoration: InputDecoration(border: OutlineInputBorder(),label: Center(child: Text("ENTER DATE OF BIRTH"))),
-                ),
+                
                 SizedBox(height: 15,),
-                ElevatedButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
-                }, child: Text("REGISTER"))
+                ElevatedButton(
+                  onPressed:() {
+                  
+                  },child:GestureDetector(
+                    onTap: () {
+                      setState(() {
+                     if(fullname.text.isEmpty||
+                     email.text.isEmpty||
+                     password.text.isEmpty||
+                     cpassword.text.isEmpty||
+                     phone.text.isEmpty
+                     ){
+                      _loginMessage="ALL fields are Required";
+                      return;
+                     }
+                     if(password.text !=password.text){
+                      _loginMessage="Recheck Password";
+                      return;
+                     }
+                     itemS.add({
+                      "fullname":fullname.text,
+                      "email":email.text,
+                      "password":password.text,
+                      "ph":phone.text
+                     });
+                     box.put
+                     (itemS, itemS.map((e)=>Map<String,dynamic>.from(e)).toList());
+                     
+                     fullname.clear();
+                     email.clear();
+                     password.clear();
+                     cpassword.clear();
+                     _loginMessage="Registration Success";
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                   }); 
+                   print("Register info:$itemS");
+                    },
+                    child: Text("REGISTER"),
+                  )
+                    
+                  
+                )
               ],
             ),
           ),
