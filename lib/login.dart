@@ -49,13 +49,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 50,),
               ElevatedButton(onPressed: (){
-                List<dynamic>userListDynamic=box.get("itemS",defaultValue: []);
+                List<dynamic>userListDynamic=box.get("ListItem",defaultValue: []);
                 List<Map<String,String>>userList=userListDynamic.map((e)=>Map<String,String>.from(e as Map)).toList();
                 bool userFound=false;
                 bool passCorrect=false;
                 for(var user in userList){
                   if(
-                    user['fullname']==password.text
+                    user['fullname']==username.text
                   ){
                     userFound=true;
                     
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                   username.clear();
                   password.clear();
                 }
-                else if (passCorrect){
+                else if (userFound){
                   setState(() {
                     _LogMsg="Incorrect password";
 
@@ -93,7 +93,16 @@ class _LoginPageState extends State<LoginPage> {
               
               
                child: Text("Log In")),
-               Text(_LogMsg)
+               Text(_LogMsg),
+               SizedBox(height: 10,),
+               Column(
+                children: [
+                  Text("Forgot Password?",style: TextStyle(color: Colors.red),),
+                  ElevatedButton(onPressed: (){
+                    Navigator.pop(context);
+                  }, child: Icon(Icons.arrow_back_ios_new))
+                ],
+               )
             ],
           ),
         ),

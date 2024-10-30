@@ -25,21 +25,7 @@ String _loginMessage="";
     super.initState();
     box=Hive.box("mybox");
   }
-  /*void _Login(){
-    setState(() {
-      String storedusername=box.get('username');
-      String storedpassword=box.get('password');
-
-      if(storedusername==username.text&&
-      storedpassword==password.text
-      ){
-        _loginMessage="Log in succesful";
-      }
-      else {
-        _loginMessage="Invalid Credentials";
-      }
-    });
-  }*/
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,45 +72,62 @@ String _loginMessage="";
                 SizedBox(height: 15,),
                 ElevatedButton(
                   onPressed:() {
-                  
-                  },child:GestureDetector(
-                    onTap: () {
-                      setState(() {
-                     if(fullname.text.isEmpty||
-                     email.text.isEmpty||
-                     password.text.isEmpty||
-                     cpassword.text.isEmpty||
-                     phone.text.isEmpty
-                     ){
-                      _loginMessage="ALL fields are Required";
-                      return;
+                   setState(() {
+                      if (
+                         fullname.text.isEmpty ||
+                            email.text.isEmpty ||
+                            password.text.isEmpty ||
+                            cpassword.text.isEmpty ||
+                            phone.text.isEmpty) {
+                          _loginMessage= "All fields are required.";
+                          return;
                      }
-                     if(password.text !=password.text){
-                      _loginMessage="Recheck Password";
-                      return;
-                     }
-                     itemS.add({
-                      "fullname":fullname.text,
-                      "email":email.text,
-                      "password":password.text,
-                      "ph":phone.text
-                     });
-                     box.put
-                     (itemS, itemS.map((e)=>Map<String,dynamic>.from(e)).toList());
-                     
-                     fullname.clear();
-                     email.clear();
-                     password.clear();
-                     cpassword.clear();
-                     _loginMessage="Registration Success";
+                     if ( password.text !=
+                             cpassword.text) {
+                          _loginMessage = "Passwords do not match.";
+                          return;
+                        }
+
+                         itemS.add({
+                          'fullname':  fullname.text,
+                          'email': email.text,
+                          'password': password.text,
+                          'cpassword':cpassword.text,
+                          'phonenumber': phone.text
+                        });
+                         box.put(
+                          'ListItem',
+                         itemS
+                              .map((e) => Map<String, dynamic>.from(e))
+                              .toList(),
+                        );
+
+                        
+                           fullname.clear();
+                           email.clear();
+                           password.clear();
+                          cpassword.clear();
+                          phone.clear();
+                           _loginMessage = "Registration Successful";
+
                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
-                   }); 
-                   print("Register info:$itemS");
-                    },
-                    child: Text("REGISTER"),
-                  )
+
+
+                    });
+                    print("Registered Items:$itemS");
+                  },
+                  child:Text("REGISTER")
                     
                   
+                ),
+                SizedBox(height: 10,),
+                Column(
+                  children: [
+                    Text("Existing User?",style: TextStyle(color: Colors.red),),
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                    }, child: Text("LOG IN"))
+                  ],
                 )
               ],
             ),

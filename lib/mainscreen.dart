@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_3/cart.dart';
 import 'package:mini_project_3/database.dart';
 import 'package:mini_project_3/description.dart';
 import 'package:mini_project_3/wishlist.dart';
@@ -17,7 +18,9 @@ class _FirstPageState extends State<FirstPage> {
       appBar: AppBar(
         title: Text("Hi,Welcome"),centerTitle: true,
         actions: [
-          ElevatedButton(onPressed: (){}, child: Icon(Icons.add_shopping_cart))
+          ElevatedButton(onPressed: (){
+          
+          }, child: Icon(Icons.add_shopping_cart))
         ],
         
       ),
@@ -86,10 +89,7 @@ class _FirstPageState extends State<FirstPage> {
                         Spacer(),
                         GestureDetector(
                           onTap: (){
-                           Navigator.push(context, MaterialPageRoute(builder: (context)=>WishListScreen(
-                            imagepath: Database.myList[index]["image"],
-                             name2: Database.myList[index]["name"],
-                              price: Database.myList[index]["price"]))); 
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=>WhishListScreen())); 
                           }
                           ,
                           child: Icon(Icons.favorite,color: Colors.red,size: 25,))
